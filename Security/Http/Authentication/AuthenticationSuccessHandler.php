@@ -6,6 +6,7 @@ use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Lexik\Bundle\JWTAuthenticationBundle\Events;
 use Lexik\Bundle\JWTAuthenticationBundle\Response\JWTAuthenticationSuccessResponse;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTManager;
+use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
@@ -33,7 +34,7 @@ class AuthenticationSuccessHandler implements AuthenticationSuccessHandlerInterf
      * @param JWTManager               $jwtManager
      * @param EventDispatcherInterface $dispatcher
      */
-    public function __construct(JWTManager $jwtManager, EventDispatcherInterface $dispatcher)
+    public function __construct(JWTTokenManagerInterface $jwtManager, EventDispatcherInterface $dispatcher)
     {
         $this->jwtManager = $jwtManager;
         $this->dispatcher = $dispatcher;
