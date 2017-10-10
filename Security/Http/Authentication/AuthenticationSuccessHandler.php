@@ -31,7 +31,7 @@ class AuthenticationSuccessHandler implements AuthenticationSuccessHandlerInterf
     protected $dispatcher;
 
     /**
-     * @param JWTManager               $jwtManager
+     * @param JWTTokenManagerInterface $jwtManager
      * @param EventDispatcherInterface $dispatcher
      */
     public function __construct(JWTTokenManagerInterface $jwtManager, EventDispatcherInterface $dispatcher)
@@ -55,7 +55,7 @@ class AuthenticationSuccessHandler implements AuthenticationSuccessHandlerInterf
         }
 
         $response = new JWTAuthenticationSuccessResponse($jwt);
-        $event    = new AuthenticationSuccessEvent(['token' => $jwt], $user, $response);
+        $event = new AuthenticationSuccessEvent(['token' => $jwt], $user, $response);
 
         $this->dispatcher->dispatch(Events::AUTHENTICATION_SUCCESS, $event);
         $response->setData($event->getData());
